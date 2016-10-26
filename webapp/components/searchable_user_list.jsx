@@ -28,6 +28,7 @@ export default class SearchableUserList extends React.Component {
 
         this.state = {
             page: 0,
+            currentUsersTotal: 0,
             search: false,
             nextDisabled: false
         };
@@ -50,10 +51,15 @@ export default class SearchableUserList extends React.Component {
     }
 
     nextPage(e) {
-        e.preventDefault();
-        this.setState({page: this.state.page + 1, nextDisabled: true});
-        this.nextTimeoutId = setTimeout(() => this.setState({nextDisabled: false}), NEXT_BUTTON_TIMEOUT);
-        this.props.nextPage(this.state.page + 1);
+        if (e) {
+            e.preventDefault();
+        }
+        if (this.readyForMoreUsers()) {
+            this.setState({page: this.state.page + 1, nextDisabled: true});
+            this.nextTimeoutId = setTimeout(() => this.setState({nextDisabled: false}), NEXT_BUTTON_TIMEOUT);
+            this.setState({currentUsersTotal: this.props.users.length});
+            this.props.nextPage(this.state.page + 1);
+        }
     }
 
     previousPage(e) {
@@ -85,17 +91,22 @@ export default class SearchableUserList extends React.Component {
         }
     }
 
+    readyForMoreUsers() {
+        if (this.props.infinite) {
+            return this.state.currentUsersTotal < this.props.users.length;
+        }
+        return true;
+    }
+
     render() {
         let nextButton;
         let previousButton;
         let usersToDisplay;
         let count;
+        let pageNavLinks;
 
-        if (this.props.users == null) {
-            usersToDisplay = this.props.users;
-        } else if (this.state.search || this.props.users == null) {
-            usersToDisplay = this.props.users;
-
+        usersToDisplay = this.props.users;
+        if (this.state.search || this.props.users == null) {
             if (this.props.total) {
                 count = (
                     <FormattedMessage
@@ -111,7 +122,9 @@ export default class SearchableUserList extends React.Component {
         } else {
             const pageStart = this.state.page * this.props.usersPerPage;
             const pageEnd = pageStart + this.props.usersPerPage;
-            usersToDisplay = this.props.users.slice(pageStart, pageEnd);
+            if (!this.props.infinite) {
+                usersToDisplay = usersToDisplay.slice(pageStart, pageEnd);
+            }
 
             if (usersToDisplay.length >= this.props.usersPerPage) {
                 nextButton = (
@@ -151,6 +164,23 @@ export default class SearchableUserList extends React.Component {
                             total: this.props.total
                         }}
                     />
+                );
+            }
+
+            if (this.props.infinite) {
+                if (this.state.nextDisabled) {
+                    pageNavLinks = (
+                        <div className='filter-controls'>
+                            {'Loading...'}
+                        </div>
+                    );
+                }
+            } else {
+                pageNavLinks = (
+                    <div className='filter-controls'>
+                        {previousButton}
+                        {nextButton}
+                    </div>
                 );
             }
         }
@@ -197,12 +227,11 @@ export default class SearchableUserList extends React.Component {
                         actions={this.props.actions}
                         actionProps={this.props.actionProps}
                         actionUserProps={this.props.actionUserProps}
+                        nextPage={this.nextPage}
+                        infinite={this.props.infinite}
                     />
                 </div>
-                <div className='filter-controls'>
-                    {previousButton}
-                    {nextButton}
-                </div>
+                {pageNavLinks}
             </div>
         );
     }
@@ -216,7 +245,8 @@ SearchableUserList.defaultProps = {
     actionProps: {},
     actionUserProps: {},
     showTeamToggle: false,
-    focusOnMount: false
+    focusOnMount: false,
+    infinite: false
 };
 
 SearchableUserList.propTypes = {
@@ -230,5 +260,6 @@ SearchableUserList.propTypes = {
     actionProps: React.PropTypes.object,
     actionUserProps: React.PropTypes.object,
     style: React.PropTypes.object,
-    focusOnMount: React.PropTypes.bool.isRequired
+    focusOnMount: React.PropTypes.bool.isRequired,
+    infinite: React.PropTypes.boolean
 };
