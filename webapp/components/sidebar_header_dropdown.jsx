@@ -335,7 +335,7 @@ export default class SidebarHeaderDropdown extends React.Component {
             );
         }
 
-        if (!config.DefaultTeam) {
+        if (!config.DefaultTeamName) {
             teams.push(
                 <li key='leaveTeam_li'>
                     <a

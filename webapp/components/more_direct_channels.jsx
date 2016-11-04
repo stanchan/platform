@@ -195,7 +195,7 @@ export default class MoreDirectChannels extends React.Component {
         }
 
         let teamToggle;
-        if (config.RestrictDirectMessage === 'any' && !config.DefaultTeam) {
+        if (config.RestrictDirectMessage === 'any' && !config.DefaultTeamName) {
             teamToggle = (
                 <div className='member-select__container'>
                     <select

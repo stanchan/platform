@@ -57,8 +57,8 @@ export default class LoginController extends React.Component {
             browserHistory.push('/select_team');
         }
 
-        if (UserStore.getCurrentUser() && global.window.mm_config.DefaultTeam) {
-            browserHistory.push(`/${global.window.mm_config.DefaultTeam}/channels/town-square`);
+        if (UserStore.getCurrentUser() && global.window.mm_config.DefaultTeamName) {
+            browserHistory.push(`/${global.window.mm_config.DefaultTeamName}/channels/town-square`);
         }
 
         AsyncClient.checkVersion();
@@ -207,8 +207,8 @@ export default class LoginController extends React.Component {
                 GlobalActions.loadDefaultLocale();
                 if (query.redirect_to) {
                     browserHistory.push(query.redirect_to);
-                } else if (global.window.mm_config.DefaultTeam) {
-                    browserHistory.push(`/${global.window.mm_config.DefaultTeam}/channels/town-square`);
+                } else if (global.window.mm_config.DefaultTeamName) {
+                    browserHistory.push(`/${global.window.mm_config.DefaultTeamName}/channels/town-square`);
                 } else {
                     browserHistory.push('/select_team');
                 }
