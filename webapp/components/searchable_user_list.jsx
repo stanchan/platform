@@ -40,9 +40,11 @@ export default class SearchableUserList extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        /*
         if (this.state.page !== prevState.page) {
             $(ReactDOM.findDOMNode(this.refs.userList)).scrollTop(0);
         }
+        */
     }
 
     componentWillUnmount() {
@@ -87,7 +89,7 @@ export default class SearchableUserList extends React.Component {
 
     render() {
         let nextButton;
-        let previousButton;
+        // let previousButton;
         let usersToDisplay;
         let count;
 
@@ -109,22 +111,29 @@ export default class SearchableUserList extends React.Component {
                 );
             }
         } else {
-            const pageStart = this.state.page * this.props.usersPerPage;
+            /*const pageStart = this.state.page * this.props.usersPerPage;
             const pageEnd = pageStart + this.props.usersPerPage;
+            usersToDisplay = this.props.users.slice(pageStart, pageEnd);
+            */
+            const pageStart = 0;
+            const pageEnd = (this.state.page + 1) * this.props.usersPerPage;
             usersToDisplay = this.props.users.slice(pageStart, pageEnd);
 
             if (usersToDisplay.length >= this.props.usersPerPage) {
                 nextButton = (
-                    <button
-                        className='btn btn-default filter-control filter-control__next'
-                        onClick={this.nextPage}
-                        disabled={this.state.nextDisabled}
-                    >
-                        {'Next'}
-                    </button>
+                    <div style={{'text-align': 'center'}}>
+                        <button
+                            className='btn btn-warning filter-control filter-control__next'
+                            onClick={this.nextPage}
+                            disabled={this.state.nextDisabled}
+                            style={{width: '98%', margin: '1%', 'font-weight': 'bolder'}}
+                        >
+                            {'Next >>'}
+                        </button>
+                    </div>
                 );
             }
-
+            /*
             if (this.state.page > 0) {
                 previousButton = (
                     <button
@@ -135,6 +144,7 @@ export default class SearchableUserList extends React.Component {
                     </button>
                 );
             }
+            */
 
             if (this.props.total) {
                 const startCount = this.state.page * this.props.usersPerPage;
@@ -155,10 +165,12 @@ export default class SearchableUserList extends React.Component {
             }
         }
 
+        const height = $(window).height() - ($(window).width() <= 768 ? 100 : 170);
+
         return (
             <div
                 className='filtered-user-list'
-                style={this.props.style}
+                style={{...this.props.style, 'max-height': `${height}px`}}
             >
                 <div className='filter-row'>
                     <div className='col-xs-9 col-sm-5'>
@@ -198,9 +210,6 @@ export default class SearchableUserList extends React.Component {
                         actionProps={this.props.actionProps}
                         actionUserProps={this.props.actionUserProps}
                     />
-                </div>
-                <div className='filter-controls'>
-                    {previousButton}
                     {nextButton}
                 </div>
             </div>
