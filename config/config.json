@@ -51,8 +51,7 @@
         "RestrictPublicChannelManagement": "all",
         "RestrictPrivateChannelManagement": "all",
         "UserStatusAwayTimeout": 300,
-        "MaxChannelsPerTeam": 2000,
-        "DefaultTeamName": ""
+        "MaxChannelsPerTeam": 2000
     },
     "SqlSettings": {
         "DriverName": "mysql",
@@ -61,7 +60,7 @@
         "MaxIdleConns": 20,
         "MaxOpenConns": 300,
         "Trace": false,
-        "AtRestEncryptKey": ""
+        "AtRestEncryptKey": "ek4wotppb11ad7rxh91kuj4z3zfkdxwg"
     },
     "LogSettings": {
         "EnableConsole": true,
@@ -85,7 +84,7 @@
         "DriverName": "local",
         "Directory": "./data/",
         "EnablePublicLink": false,
-        "PublicLinkSalt": "",
+        "PublicLinkSalt": "5e6hboj6wkxhat6jqo5bspm55atonmwq",
         "ThumbnailWidth": 120,
         "ThumbnailHeight": 100,
         "PreviewWidth": 1024,
@@ -114,8 +113,8 @@
         "SMTPServer": "",
         "SMTPPort": "",
         "ConnectionSecurity": "",
-        "InviteSalt": "",
-        "PasswordResetSalt": "",
+        "InviteSalt": "cxnfaaztne738aj8w9146ih7rbyhjrdw",
+        "PasswordResetSalt": "qrrsxkakhwoqtw71re3mn5rtixf6ejr5",
         "SendPushNotifications": false,
         "PushNotificationServer": "",
         "PushNotificationContents": "generic",
@@ -238,5 +237,13 @@
         "TurnURI": "",
         "TurnUsername": "",
         "TurnSharedKey": ""
+    },
+    "ClientRequirements": {
+        "AndroidLatestVersion": "420",
+        "AndroidMinVersion": "410",
+        "IosLatestVersion": "420",
+        "IosMinVersion": "410",
+        "DesktopLatestVersion": "420",
+        "DesktopMinVersion": "410"
     }
 }
