@@ -789,7 +789,7 @@ export default class UserSettingsDisplay extends React.Component {
                         <br/>
                         <FormattedMessage
                             id='user.settings.display.fontDesc'
-                            defaultMessage='Select the font displayed in the Mattermost user interface.'
+                            defaultMessage='Select the font displayed in the uChat user interface.'
                         />
                     </div>
                 </div>
