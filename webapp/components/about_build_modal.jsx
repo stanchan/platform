@@ -46,9 +46,9 @@ export default class AboutBuildModal extends React.Component {
                 <a
                     target='_blank'
                     rel='noopener noreferrer'
-                    href='http://www.mattermost.org/'
+                    href='https://team.uberinternal.com'
                 >
-                    {'mattermost.org'}
+                    {'team.uberinternal.com'}
                 </a>
             </div>
         );

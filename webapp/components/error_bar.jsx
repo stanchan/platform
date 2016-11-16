@@ -100,7 +100,7 @@ export default class ErrorBar extends React.Component {
             message = (
                 <FormattedMessage
                     id={EXPIRING_ERROR}
-                    defaultMessage='The Enterprise license is expiring on {date}. To renew your license, please contact commercial@mattermost.com'
+                    defaultMessage='The Enterprise license is expiring on {date}. To renew your license, please contact it@uber.com'
                     values={{
                         date: displayExpiryDate()
                     }}
@@ -110,7 +110,7 @@ export default class ErrorBar extends React.Component {
             message = (
                 <FormattedMessage
                     id={EXPIRED_ERROR}
-                    defaultMessage='Enterprise license has expired; you have 15 days from expiry to renew the license, please contact commercial@mattermost.com for details'
+                    defaultMessage='Enterprise license has expired; you have 15 days from expiry to renew the license, please contact it@uber.com for details'
                 />
             );
         } else if (message === PAST_GRACE_ERROR) {
