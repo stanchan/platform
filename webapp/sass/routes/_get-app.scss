@@ -66,6 +66,7 @@
     }
 }
 
+.get-android-app ,
 .get-ios-app {
     margin: 30px;
 
@@ -73,6 +74,10 @@
         width: 180px;
     }
 
+    .get-android-app__app-store-link  ,
+    .get-android-app__already-have-it ,
+    .get-android-app__open-mattermost ,
+    .get-android-app__continue-with-browser
     .get-ios-app__app-store-link  ,
     .get-ios-app__already-have-it ,
     .get-ios-app__open-mattermost ,
