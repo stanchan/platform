@@ -73,24 +73,16 @@
         width: 180px;
     }
 
-    .get-ios-app__app-store-link {
-        display: block;
-        margin: auto;
-        margin-bottom: 30px;
-        width: 180px;
-    }
-
-    .get-ios-app__already-have-it {
-        font-size: 18px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .get-ios-app__open-mattermost {
-        display: block;
-        font-size: 20px;
-        margin: auto;
-        padding: 12px;
-        width: 220px;
+    .get-ios-app__app-store-link  ,
+    .get-ios-app__already-have-it ,
+    .get-ios-app__open-mattermost ,
+    .get-ios-app__continue-with-browser {
+        display       : block ;
+        font-size     : 20px  ;
+        font-weight   : bold  ;
+        margin        : 0 auto 20px;
+        padding       : 12px  ;
+        width         : 300px ;
+        border-width  : 2px   ;
     }
 }
