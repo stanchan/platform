@@ -78,3 +78,5 @@ ecover.out
 .agignore
 .ctags
 tags
+.nvmrc
+config/config.json
