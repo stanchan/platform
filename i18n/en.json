@@ -725,7 +725,7 @@
   },
   {
     "id": "api.email_batching.render_batched_post.date",
-    "translation": "{{.Hour}}:{{.Minute}} {{.Timezone}}, {{.Month}} {{.Day}}"
+    "translation": " {{.Hour}}:{{.Minute}} {{.Timezone}}, {{.Month}} {{.Day}}"
   },
   {
     "id": "api.email_batching.render_batched_post.direct_message",
@@ -743,7 +743,7 @@
     "id": "api.email_batching.send_batched_email_notification.body_text",
     "translation": {
       "one": "You have a new message.",
-      "other": "You have {{.Count}} new messages."
+      "other": "You have {{.Count}} new mention."
     }
   },
   {
@@ -1377,7 +1377,7 @@
   },
   {
     "id": "api.post.send_notifications_and_forget.message_body",
-    "translation": "You have one new message."
+    "translation": "You have one new mention."
   },
   {
     "id": "api.post.send_notifications_and_forget.message_subject",
@@ -1925,11 +1925,11 @@
   },
   {
     "id": "api.templates.post_body.info",
-    "translation": "CHANNEL: {{.ChannelName}}<br>{{.SenderName}} - {{.Hour}}:{{.Minute}} {{.TimeZone}}, {{.Month}} {{.Day}}"
+    "translation": "{{.ChannelName}}<br>{{.SenderName}} - {{.Hour}}:{{.Minute}} {{.TimeZone}}, {{.Month}} {{.Day}}."
   },
   {
     "id": "api.templates.post_subject_in_channel",
-    "translation": "{{.SubjectText}} in {{.TeamDisplayName}} ({{.ChannelName}}) on {{.Month}} {{.Day}}, {{.Year}}"
+    "translation": "{{.SubjectText}} in {{.TeamDisplayName}} bbbbbbbbb ({{.ChannelName}}) on {{.Month}} {{.Day}}, {{.Year}}"
   },
   {
     "id": "api.templates.post_subject_in_direct_message",
