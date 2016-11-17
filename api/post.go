@@ -853,6 +853,7 @@ func sendNotificationEmail(c *Context, post *model.Post, user *model.User, chann
 	bodyPage.Props["BodyText"] = bodyText
 	bodyPage.Props["Button"] = userLocale("api.templates.post_body.button")
 	bodyPage.Html["Info"] = template.HTML(userLocale("api.templates.post_body.info",
+	bodyPage.Html["Nameslug"] = template.HTML(userLocale("api.templates.post_body.nameslug",
 		map[string]interface{}{"ChannelName": channelName, "SenderName": senderName,
 			"Hour": fmt.Sprintf("%02d", tm.Hour()), "Minute": fmt.Sprintf("%02d", tm.Minute()),
 			"TimeZone": zone, "Month": month, "Day": day}))

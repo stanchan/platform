@@ -1928,6 +1928,10 @@
     "translation": "{{.ChannelName}}<br>{{.SenderName}} - {{.Hour}}:{{.Minute}} {{.TimeZone}}, {{.Month}} {{.Day}}."
   },
   {
+    "id": "api.templates.post_body.nameslug",
+    "translation": "{{.SenderName}}"
+  },
+  {
     "id": "api.templates.post_subject_in_channel",
     "translation": "{{.SubjectText}} in {{.TeamDisplayName}} bbbbbbbbb ({{.ChannelName}}) on {{.Month}} {{.Day}}, {{.Year}}"
   },
