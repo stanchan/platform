@@ -614,7 +614,7 @@ func (o *Config) SetDefaults() {
 
 	if o.SupportSettings.SupportEmail == nil {
 		o.SupportSettings.SupportEmail = new(string)
-		*o.SupportSettings.SupportEmail = "feedback@mattermost.com"
+		*o.SupportSettings.SupportEmail = "it@uber.com"
 	}
 
 	if o.LdapSettings.Enable == nil {
