@@ -1929,7 +1929,7 @@
   },
   {
     "id": "api.templates.post_body.nameslug",
-    "translation": "{{.SenderName}}"
+    "translation": "@{{.SenderName}}"
   },
   {
     "id": "api.templates.post_subject_in_channel",
