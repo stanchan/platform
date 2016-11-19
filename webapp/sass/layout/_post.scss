@@ -849,7 +849,8 @@
         }
 
         .icon {
-            &--uchat {
+            &-
+            {
                 .uchat-bubble-color {
                     fill: #8ed0bc;
                 }
@@ -867,10 +868,6 @@
             width: 32px;
             max-width:none;
             object-fit: cover;
-        }
-
-        .icon--uchat {
-          @include border-radius(0px);
         }
 
         .icon--uchat {
