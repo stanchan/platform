@@ -9,9 +9,18 @@
     }
 
     .filtered-user-list {
-        .filter-button {
-            .btn {
-                width: 100%;
+        /* max-height: 65vh !important; */
+        .filter-row {
+            margin: 5px 0;
+            .filter-text {
+                padding: 0 0 0 15px;
+            }
+
+            .filter-button {
+                padding: 0 15px 0 0;
+                .btn {
+                    text-align: center;
+                }
             }
         }
     }
@@ -134,8 +143,8 @@
     }
 
     .member-select__container {
-        margin-bottom: 10px;
-        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-top: 5px;
         overflow: hidden;
         position: relative;
         right: 10px;
@@ -523,6 +532,8 @@
             }
 
             .modal-header {
+                padding: 4px 15px 1px;
+                min-height: 36px;
                 .modal-action {
                     margin-top: 10px;
                 }
@@ -546,6 +557,11 @@
                         width: 100%;
                     }
                 }
+            }
+
+            .modal-footer {
+                padding: 5px;
+                background: whitesmoke;
             }
 
             .settings-modal {
@@ -1312,7 +1328,7 @@
             .modal-body {
                 padding-bottom: 5px;
             }
-
+            /*
             .more-modal__list {
                 max-height: calc(100vh - 260px);
             }
@@ -1322,13 +1338,16 @@
                     max-height: calc(100vh - 295px);
                 }
             }
+            */
         }
 
         .modal {
             &.more-channel__modal {
+                /*
                 .more-modal__list {
                     max-height: calc(100vh - 250px);
                 }
+                */
 
                 .modal-body {
                     padding-bottom: 35px;
