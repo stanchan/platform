@@ -74,6 +74,7 @@ export default class SearchableUserList extends React.Component {
         } else {
             this.setState({search: true});
         }
+        $(ReactDOM.findDOMNode(this.refs.userList)).scrollTop(0);
     }
 
     onSearchBoxKeyPress(e) {
