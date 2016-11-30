@@ -2,6 +2,7 @@
 // See License.txt for license information.
 
 import UserList from 'components/user_list.jsx';
+import SpinnerButton from 'components/spinner_button.jsx';
 
 import * as Utils from 'utils/utils.jsx';
 import Constants from 'utils/constants.jsx';
@@ -19,7 +20,7 @@ export default class SearchableUserList extends React.Component {
         super(props);
 
         this.nextPage = this.nextPage.bind(this);
-        this.previousPage = this.previousPage.bind(this);
+        // this.previousPage = this.previousPage.bind(this);
         this.doSearch = this.doSearch.bind(this);
         this.onSearchBoxKeyPress = this.onSearchBoxKeyPress.bind(this);
         this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
@@ -58,10 +59,12 @@ export default class SearchableUserList extends React.Component {
         this.props.nextPage(this.state.page + 1);
     }
 
+    /*
     previousPage(e) {
         e.preventDefault();
         this.setState({page: this.state.page - 1});
     }
+    */
 
     doSearch() {
         const term = this.refs.filter.value;
@@ -83,13 +86,12 @@ export default class SearchableUserList extends React.Component {
     onSearchBoxChange(e) {
         const searchTerm = e.target.value;
         if (searchTerm === '') {
-            this.props.search(''); // clear search
-            this.setState({page: 0, search: false});
+            this.doSearch();
         } else if (this.props.autoSearch === true) {
             clearTimeout(this.timeoutId);
             if (searchTerm && searchTerm.length >= 2) {
                 this.timeoutId = setTimeout(
-                    () => this.props.search(searchTerm),
+                    () => this.doSearch(),
                     Constants.AUTOCOMPLETE_TIMEOUT
                 );
             }
@@ -101,7 +103,6 @@ export default class SearchableUserList extends React.Component {
         // let previousButton;
         let usersToDisplay;
         let count;
-
         if (this.props.users == null) {
             usersToDisplay = this.props.users;
         } else if (this.state.search || this.props.users == null) {
@@ -131,13 +132,16 @@ export default class SearchableUserList extends React.Component {
             if (usersToDisplay.length >= this.props.usersPerPage) {
                 nextButton = (
                     <div style={{'text-align': 'center'}}>
-                        <button
+                        <SpinnerButton
                             className='btn btn-warning filter-control filter-control__next'
                             onClick={this.nextPage}
-                            disabled={this.state.nextDisabled}
+                            spinning={this.state.nextDisabled}
                         >
-                            {'Next >>'}
-                        </button>
+                            <FormattedMessage
+                                id='more_direct_channels.load_more'
+                                defaultMessage='Load more'
+                            />
+                        </SpinnerButton>
                     </div>
                 );
             }
