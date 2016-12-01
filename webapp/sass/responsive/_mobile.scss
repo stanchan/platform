@@ -9,7 +9,6 @@
     }
 
     .filtered-user-list {
-        /* max-height: 65vh !important; */
         .filter-row {
             margin: 5px 0;
             .filter-text {
@@ -532,8 +531,6 @@
             }
 
             .modal-header {
-                padding: 4px 15px 1px;
-                min-height: 36px;
                 .modal-action {
                     margin-top: 10px;
                 }
@@ -1328,31 +1325,13 @@
             .modal-body {
                 padding-bottom: 5px;
             }
-            /*
-            .more-modal__list {
-                max-height: calc(100vh - 260px);
-            }
-
-            &.more-direct-channels {
-                .more-modal__list {
-                    max-height: calc(100vh - 295px);
-                }
-            }
-            */
         }
 
         .modal {
             &.more-channel__modal {
-                /*
-                .more-modal__list {
-                    max-height: calc(100vh - 250px);
-                }
-                */
-
                 .modal-body {
                     padding-bottom: 35px;
                 }
-
             }
 
             .settings-modal {
