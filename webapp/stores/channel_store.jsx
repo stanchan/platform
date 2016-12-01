@@ -28,7 +28,7 @@ class ChannelStoreClass extends EventEmitter {
 
         // Lists of sorted IDs for paginated channels
         this.paginated_channels = {};
-        this.paginated_channels_count =0;
+        this.paginated_channels_count = 0;
         this.paging_offset = 0;
         this.paging_count = 0;
     }
