@@ -20,7 +20,6 @@ export default class SearchableUserList extends React.Component {
         super(props);
 
         this.nextPage = this.nextPage.bind(this);
-        // this.previousPage = this.previousPage.bind(this);
         this.doSearch = this.doSearch.bind(this);
         this.onSearchBoxKeyPress = this.onSearchBoxKeyPress.bind(this);
         this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
@@ -40,14 +39,6 @@ export default class SearchableUserList extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        /*
-        if (this.state.page !== prevState.page) {
-            $(ReactDOM.findDOMNode(this.refs.userList)).scrollTop(0);
-        }
-        */
-    }
-
     componentWillUnmount() {
         clearTimeout(this.nextTimeoutId);
     }
@@ -58,13 +49,6 @@ export default class SearchableUserList extends React.Component {
         this.nextTimeoutId = setTimeout(() => this.setState({nextDisabled: false}), NEXT_BUTTON_TIMEOUT);
         this.props.nextPage(this.state.page + 1);
     }
-
-    /*
-    previousPage(e) {
-        e.preventDefault();
-        this.setState({page: this.state.page - 1});
-    }
-    */
 
     doSearch() {
         const term = this.refs.filter.value;
@@ -101,7 +85,6 @@ export default class SearchableUserList extends React.Component {
 
     render() {
         let nextButton;
-        // let previousButton;
         let usersToDisplay;
         let count;
         if (this.props.users == null) {
@@ -122,10 +105,6 @@ export default class SearchableUserList extends React.Component {
                 );
             }
         } else {
-            /*const pageStart = this.state.page * this.props.usersPerPage;
-            const pageEnd = pageStart + this.props.usersPerPage;
-            usersToDisplay = this.props.users.slice(pageStart, pageEnd);
-            */
             const pageStart = 0;
             const pageEnd = (this.state.page + 1) * this.props.usersPerPage;
             usersToDisplay = this.props.users.slice(pageStart, pageEnd);
@@ -146,18 +125,6 @@ export default class SearchableUserList extends React.Component {
                     </div>
                 );
             }
-            /*
-            if (this.state.page > 0) {
-                previousButton = (
-                    <button
-                        className='btn btn-default filter-control filter-control__prev'
-                        onClick={this.previousPage}
-                    >
-                        {'Previous'}
-                    </button>
-                );
-            }
-            */
 
             if (this.props.total) {
                 const startCount = this.state.page * this.props.usersPerPage;
@@ -186,27 +153,14 @@ export default class SearchableUserList extends React.Component {
                 style={{...this.props.style, 'max-height': `${height}px`}}
             >
                 <div className='filter-row'>
-                    <div className='col-xs-9 col-sm-5'>
+                    <div className='col-xs-12'>
                         <input
                             ref='filter'
                             className='form-control filter-textbox'
-                            placeholder={Utils.localizeMessage('filtered_user_list.search', 'Press enter to search')}
+                            placeholder={Utils.localizeMessage('filtered_user_list.search', 'Search')}
                             onKeyPress={this.onSearchBoxKeyPress}
                             onChange={this.onSearchBoxChange}
                         />
-                    </div>
-                    <div className='col-xs-3 col-sm-2 filter-button'>
-                        <button
-                            type='button'
-                            className='btn btn-primary'
-                            onClick={this.doSearch}
-                            disabled={this.props.users == null}
-                        >
-                            <FormattedMessage
-                                id='filtered_user_list.searchButton'
-                                defaultMessage='Search'
-                            />
-                        </button>
                     </div>
                     <div className='col-sm-12'>
                         <span className='member-count pull-left'>{count}</span>

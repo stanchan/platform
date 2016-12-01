@@ -19,14 +19,12 @@ export default class MoreChannelsList extends React.Component {
         super(props);
 
         this.nextPage = this.nextPage.bind(this);
-        //this.previousPage = this.previousPage.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.createChannelRow = this.createChannelRow.bind(this);
 
         this.nextTimeoutId = 0;
 
         this.state = {
-            page: 0,
             filter: '',
             joiningChannel: '',
             channels: props.channels
@@ -47,26 +45,12 @@ export default class MoreChannelsList extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        /*
-        if (this.state.page !== prevState.page) {
-            $(ReactDOM.findDOMNode(this.refs.channelList)).scrollTop(0);
-        }
-        */
-    }
-
     nextPage(e) {
         e.preventDefault();
-        this.setState({page: this.state.page + 1, nextDisabled: true});
+        this.setState({nextDisabled: true});
         this.nextTimeoutId = setTimeout(() => this.setState({nextDisabled: false}), NEXT_BUTTON_TIMEOUT);
-        this.props.nextPage(this.state.page + 1);
+        this.props.nextPage();
     }
-    /*
-    previousPage(e) {
-        e.preventDefault();
-        this.setState({page: this.state.page - 1});
-    }
-    */
 
     clearFilters(channels) {
         this.setState({filter: '', channels});
@@ -121,27 +105,16 @@ export default class MoreChannelsList extends React.Component {
     }
 
     handleFilterChange(e) {
-        this.setState({page: 0, filter: e.target.value});
+        this.setState({filter: e.target.value});
         this.props.search(e.target.value);
         $(ReactDOM.findDOMNode(this.refs.channelList)).scrollTop(0);
     }
 
     render() {
-        const channels = Object.values(this.state.channels);
+        const channelsToDisplay = Object.values(this.state.channels);
 
         let nextButton;
-        // let previousButton;
-        let count;
-        /*
-        const startCount = this.state.page * this.props.channelsPerPage;
-        const endCount = startCount + this.props.channelsPerPage;
-        const channelsToDisplay = channels.slice(startCount, endCount);
-        */
-        const startCount = 0;
-        const endCount = (this.state.page + 1) * this.props.channelsPerPage;
-        const channelsToDisplay = channels.slice(startCount, endCount);
-
-        if (channelsToDisplay.length >= this.props.channelsPerPage) {
+        if (channelsToDisplay.length < this.props.total) {
             nextButton = (
                 <div style={{'text-align': 'center'}}>
                     <SpinnerButton
@@ -157,33 +130,17 @@ export default class MoreChannelsList extends React.Component {
                 </div>
             );
         }
-        /*
-        if (this.state.page > 0) {
-            previousButton = (
-                <button
-                    className='btn btn-default filter-control filter-control__prev'
-                    onClick={this.previousPage}
-                >
-                    {'Previous'}
-                </button>
-            );
-        }
-        */
 
-        if (this.props.total) {
-            count = (
-                <FormattedMessage
-                    id='filtered_user_list.countTotalPage'
-                    defaultMessage='{startCount, number} - {endCount, number} {count, plural, =0 {0 channels} one {channel} other {channels}} of {total} total'
-                    values={{
-                        count: channelsToDisplay.length,
-                        startCount: startCount + 1,
-                        endCount,
-                        total: this.props.total
-                    }}
-                />
-            );
-        }
+        const count = (
+            <FormattedMessage
+                id='filtered_user_list.countTotalPage'
+                defaultMessage='{endCount, number} of {total} channels'
+                values={{
+                    endCount: channelsToDisplay.length,
+                    total: this.props.total
+                }}
+            />
+        );
 
         const height = $(window).height() - ($(window).width() <= 768 ? 100 : 170);
 
@@ -219,14 +176,12 @@ export default class MoreChannelsList extends React.Component {
 }
 
 MoreChannelsList.defaultProps = {
-    channels: [],
-    channelsPerPage: 50 //eslint-disable-line no-magic-numbers
+    channels: []
 };
 
 MoreChannelsList.propTypes = {
     channels: React.PropTypes.arrayOf(React.PropTypes.object),
     handleJoin: React.PropTypes.func.isRequired,
-    channelsPerPage: React.PropTypes.number,
     total: React.PropTypes.number,
     nextPage: React.PropTypes.func.isRequired,
     search: React.PropTypes.func.isRequired

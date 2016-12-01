@@ -241,7 +241,6 @@ export default class MoreDirectChannels extends React.Component {
                     <SearchableUserList
                         key={'moreDirectChannelsList_' + this.state.listType}
                         users={this.state.users}
-                        total={(this.state.users || []).length}
                         usersPerPage={USERS_PER_PAGE}
                         nextPage={this.nextPage}
                         search={this.search}
