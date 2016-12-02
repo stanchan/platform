@@ -970,6 +970,19 @@ func TestDeleteChannel(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	// Check if deleted channel name is changed to contain "-archived-"
+	if resp, err := Client.GetChannel(channel1.Id, ""); err != nil {
+		t.Fatal(err)
+	} else {
+		data := resp.Data.(*model.ChannelData)
+		if !strings.Contains(data.Channel.DisplayName, "-archived-") {
+			t.Fatal("deleted channel DisplayName did not contain -archived-")
+		}
+		if !strings.Contains(data.Channel.Name, "-archived-") {
+			t.Fatal("deleted channel Name did not contain -archived-")
+		}
+	}
+
 	if _, err := Client.DeleteChannel(channelMadeByCA.Id); err != nil {
 		t.Fatal("Team admin failed to delete Channel Admin's channel")
 	}

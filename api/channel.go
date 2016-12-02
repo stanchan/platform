@@ -6,6 +6,7 @@ package api
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 
 	l4g "github.com/alecthomas/log4go"
@@ -773,6 +774,16 @@ func deleteChannel(c *Context, w http.ResponseWriter, r *http.Request) {
 		}
 
 		now := model.GetMillis()
+
+		// Update channel name to contain "-archived" + timestamp
+		currentTimeStr := strconv.FormatInt(now, 10)
+		channel.Name += "-archived-" + currentTimeStr
+		channel.DisplayName += "-archived-" + currentTimeStr
+		if ucresult := <-Srv.Store.Channel().Update(channel); ucresult.Err != nil {
+			c.Err = ucresult.Err
+			return
+		}
+
 		for _, hook := range incomingHooks {
 			go func() {
 				if result := <-Srv.Store.Webhook().DeleteIncoming(hook.Id, now); result.Err != nil {
