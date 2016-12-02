@@ -33,6 +33,7 @@ export default class FilePreview extends React.Component {
 
             let className = 'file-preview';
             let previewImage;
+            let fileName;
             if (type === 'image') {
                 previewImage = (
                     <img
@@ -43,6 +44,7 @@ export default class FilePreview extends React.Component {
             } else {
                 className += ' custom-file';
                 previewImage = <div className={'file-icon ' + Utils.getIconClassName(type)}/>;
+                fileName = <div className='file-preview__name'>{info.name}</div>;
             }
 
             previews.push(
@@ -51,6 +53,7 @@ export default class FilePreview extends React.Component {
                     className={className}
                 >
                     {previewImage}
+                    {fileName}
                     <a
                         className='file-preview__remove'
                         onClick={this.handleRemove.bind(this, info.id)}

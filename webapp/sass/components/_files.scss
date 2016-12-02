@@ -49,6 +49,17 @@
     max-width: 100%;
 }
 
+.file-preview__name {
+    background: alpha-color($black, .4);
+    color: $white;
+    top: 0;
+    width: 120px;
+    position: absolute;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 5px 20px 10px 10px;
+}
+
 .file-preview__remove {
     height: 100%;
     left: 0;

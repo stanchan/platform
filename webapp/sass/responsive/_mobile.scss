@@ -681,6 +681,10 @@
         margin-top: 0;
     }
 
+    .file-preview__name {
+        padding: 5px 30px 10px 10px;
+    }
+
     .file-preview__remove {
         @include alpha-property(background, $black, .5);
         height: 28px;
