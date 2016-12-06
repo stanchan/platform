@@ -1590,7 +1590,7 @@
   "rename_channel.handle": "Handle",
   "rename_channel.handleHolder": "lowercase alphanumeric&#39;s only",
   "rename_channel.lowercase": "Must be lowercase alphanumeric characters",
-  "rename_channel.maxLength": "This field must be less than 22 characters",
+  "rename_channel.maxLength": "This field must be less than {maxLength} characters",
   "rename_channel.required": "This field is required",
   "rename_channel.save": "Save",
   "rename_channel.title": "Rename Channel",

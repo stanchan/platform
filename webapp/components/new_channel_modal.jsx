@@ -16,6 +16,8 @@ import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-int
 
 import {Modal} from 'react-bootstrap';
 
+const {CHANNELS_MAX_LENGTH_NAME} = Constants.Uchat;
+
 const holders = defineMessages({
     nameEx: {
         id: 'channel_modal.nameEx',
@@ -241,7 +243,7 @@ class NewChannelModal extends React.Component {
                                         ref='display_name'
                                         className='form-control'
                                         placeholder={this.props.intl.formatMessage(holders.nameEx)}
-                                        maxLength='22'
+                                        maxLength={CHANNELS_MAX_LENGTH_NAME}
                                         value={this.props.channelData.displayName}
                                         autoFocus={true}
                                         tabIndex='1'

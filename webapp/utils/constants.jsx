@@ -266,6 +266,10 @@ export const Constants = {
         POST: 5
     },
 
+    Uchat: {
+        CHANNELS_MAX_LENGTH_NAME: 22
+    },
+
     SPECIAL_MENTIONS: ['all', 'channel', 'here'],
     CHARACTER_LIMIT: 4000,
     IMAGE_TYPES: ['jpg', 'gif', 'bmp', 'png', 'jpeg'],

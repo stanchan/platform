@@ -11,6 +11,8 @@ import {intlShape, injectIntl, defineMessages, FormattedMessage} from 'react-int
 
 import {Modal} from 'react-bootstrap';
 
+const {CHANNELS_MAX_LENGTH_NAME} = Constants.Uchat;
+
 const holders = defineMessages({
     required: {
         id: 'rename_channel.required',
@@ -18,7 +20,7 @@ const holders = defineMessages({
     },
     maxLength: {
         id: 'rename_channel.maxLength',
-        defaultMessage: 'This field must be less than 22 characters'
+        defaultMessage: `This field must be less than ${CHANNELS_MAX_LENGTH_NAME} characters`
     },
     lowercase: {
         id: 'rename_channel.lowercase',
@@ -131,8 +133,8 @@ export class RenameChannelModal extends React.Component {
         if (!channel.display_name) {
             state.displayNameError = formatMessage(holders.required);
             state.invalid = true;
-        } else if (channel.display_name.length > 22) {
-            state.displayNameError = formatMessage(holders.maxLength);
+        } else if (channel.display_name.length > CHANNELS_MAX_LENGTH_NAME) {
+            state.displayNameError = formatMessage(holders.maxLength, {maxLength: CHANNELS_MAX_LENGTH_NAME});
             state.invalid = true;
         } else {
             state.displayNameError = '';
@@ -142,8 +144,8 @@ export class RenameChannelModal extends React.Component {
         if (!channel.name) {
             state.nameError = formatMessage(holders.required);
             state.invalid = true;
-        } else if (channel.name.length > 22) {
-            state.nameError = formatMessage(holders.maxLength);
+        } else if (channel.name.length > CHANNELS_MAX_LENGTH_NAME) {
+            state.nameError = formatMessage(holders.maxLength, {maxLength: CHANNELS_MAX_LENGTH_NAME});
             state.invalid = true;
         } else {
             const cleanedName = Utils.cleanUpUrlable(channel.name);
@@ -253,7 +255,7 @@ export class RenameChannelModal extends React.Component {
                                 className='form-control'
                                 placeholder={formatMessage(holders.displayNameHolder)}
                                 value={this.state.displayName}
-                                maxLength='64'
+                                maxLength={CHANNELS_MAX_LENGTH_NAME}
                             />
                             {displayNameError}
                         </div>
@@ -266,7 +268,7 @@ export class RenameChannelModal extends React.Component {
                                 ref='channelName'
                                 placeholder={formatMessage(holders.handleHolder)}
                                 value={this.state.channelName}
-                                maxLength='64'
+                                maxLength={CHANNELS_MAX_LENGTH_NAME}
                                 readOnly={readOnlyHandleInput}
                             />
                             {nameError}
