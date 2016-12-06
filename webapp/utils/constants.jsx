@@ -269,7 +269,7 @@ export const Constants = {
     },
 
     Uchat: {
-        CHANNELS_MAX_LENGTH_NAME: 22
+        CHANNELS_MAX_LENGTH_NAME: 64
     },
 
     SPECIAL_MENTIONS: ['all', 'channel', 'here'],
