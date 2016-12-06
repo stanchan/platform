@@ -11,6 +11,8 @@ import {FormattedMessage} from 'react-intl';
 
 import React from 'react';
 
+const {CHANNELS_MAX_LENGTH_NAME} = Constants.Uchat;
+
 export default class ChangeUrlModal extends React.Component {
     constructor(props) {
         super(props);
@@ -176,7 +178,7 @@ export default class ChangeUrlModal extends React.Component {
                                         type='text'
                                         ref='urlinput'
                                         className='form-control'
-                                        maxLength='22'
+                                        maxLength={CHANNELS_MAX_LENGTH_NAME}
                                         onChange={this.onURLChanged}
                                         value={this.state.currentURL}
                                         autoFocus={true}
