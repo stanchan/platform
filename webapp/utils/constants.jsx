@@ -1,6 +1,8 @@
 // Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
+/* eslint-disable no-magic-numbers */
+
 import keyMirror from 'keymirror';
 
 import audioIcon from 'images/icons/audio.png';
